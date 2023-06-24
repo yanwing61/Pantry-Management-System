@@ -1,6 +1,10 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: lightgoldenrodyellow;
+    font-family: 'Didact Gothic', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
