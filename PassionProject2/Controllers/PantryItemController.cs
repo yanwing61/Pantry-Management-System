@@ -123,6 +123,8 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Associate(int id, int TagID)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Trying to associate pantry item :" + id + " with tag " + TagID);
 
             //call api to associate pantry item with tag
@@ -139,6 +141,8 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Unassociate(int id, int TagID)
         {
+            GetApplicationCookie();
+
             Debug.WriteLine("Trying to unassociate pantry item :" + id + " with tag " + TagID);
 
             //call api to associate pantry item with tag
@@ -159,6 +163,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult New()
         {
+            GetApplicationCookie();
             return View();
         }
 
@@ -167,6 +172,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Create(PantryItem pantryItem)
         {
+            GetApplicationCookie();
             Debug.WriteLine("the json payload is :");
             //objective: add a new Pantry Item into our system using the API
 
@@ -197,6 +203,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie();
             string url = "PantryItemData/findpantryitem/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PantryItemDto selectedPantryItem = response.Content.ReadAsAsync<PantryItemDto>().Result;
@@ -208,7 +215,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Update(int id, PantryItem PantryItem)
         {
-
+            GetApplicationCookie();
             string url = "PantryItemdata/updatePantryItem/" + id;
             string jsonpayload = jss.Serialize(PantryItem);
             HttpContent content = new StringContent(jsonpayload);
@@ -230,6 +237,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();
             string url = "PantryItemdata/findPantryItem/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             PantryItemDto selectedPantryItem = response.Content.ReadAsAsync<PantryItemDto>().Result;
@@ -241,6 +249,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "PantryItemdata/deletePantryItem/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

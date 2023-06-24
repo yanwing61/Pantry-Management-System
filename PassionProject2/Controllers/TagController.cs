@@ -113,6 +113,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult New()
         {
+            GetApplicationCookie();
             return View();
         }
 
@@ -121,6 +122,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Create(Tag Tag)
         {
+            GetApplicationCookie();
             Debug.WriteLine("the json payload is :");
             //objective: add a new tag into our system using the API
 
@@ -151,6 +153,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie();
             string url = "Tagdata/findTag/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             TagDto selectedTag = response.Content.ReadAsAsync<TagDto>().Result;
@@ -162,7 +165,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Update(int id, Tag Tag)
         {
-
+            GetApplicationCookie();
             string url = "Tagdata/updateTag/" + id;
             string jsonpayload = jss.Serialize(Tag);
             HttpContent content = new StringContent(jsonpayload);
@@ -183,6 +186,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();
             string url = "Tagdata/findTag/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             TagDto selectedTag = response.Content.ReadAsAsync<TagDto>().Result;
@@ -194,6 +198,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "Tagdata/deleteTag/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

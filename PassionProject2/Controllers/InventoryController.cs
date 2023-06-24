@@ -103,6 +103,8 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult New()
         {
+            GetApplicationCookie();
+
             //information about all pantry items in the systems
             // curl https://localhost:44302/api/PantryItemData/ListPantryItems
 
@@ -120,6 +122,8 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Create(Inventory inventory, int clientTimezoneOffset)
         {
+            GetApplicationCookie();
+
             inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
 
             Debug.WriteLine("the json payload is :");
@@ -143,15 +147,18 @@ namespace PassionProject2.Controllers
             }
             else
             {
-                return RedirectToAction("Error");
+                Debug.WriteLine(response);
+                return RedirectToAction("Error"); 
+                
             }
-
+           
         }
 
         // GET: Inventory/Edit/5
         [Authorize]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie();
             UpdateInventory ViewModel = new UpdateInventory();
 
             string url = "InventoryData/FindInventory/" + id;
@@ -173,6 +180,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Update(int id, Inventory inventory, int clientTimezoneOffset)
         {
+            GetApplicationCookie();
             inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
             string url = "Inventorydata/updateInventory/" + id;
             string jsonpayload = jss.Serialize(inventory);
@@ -188,6 +196,7 @@ namespace PassionProject2.Controllers
             }
             else
             {
+                Debug.WriteLine(response);
                 return RedirectToAction("Error");
             }
         }
@@ -196,9 +205,11 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();
             string url = "Inventorydata/findInventory/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             InventoryDto selectedInventory = response.Content.ReadAsAsync<InventoryDto>().Result;
+            Debug.WriteLine(response);
             return View(selectedInventory);
         }
 
@@ -207,6 +218,7 @@ namespace PassionProject2.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "Inventorydata/deleteInventory/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -218,6 +230,7 @@ namespace PassionProject2.Controllers
             }
             else
             {
+                Debug.WriteLine(response);
                 return RedirectToAction("Error");
             }
         }
