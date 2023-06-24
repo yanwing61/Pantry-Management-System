@@ -1,0 +1,17 @@
+﻿﻿@model IEnumerable<PassionProject2.Models.InventoryDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<a href="/Inventory/New">+ New Inventory</a>
+
+@foreach (var Inventory in Model)
+{
+    <h3><a href="/Inventory/details/@Inventory.InventoryID">@Inventory.InventoryLogDate</a></h3>
+    <div>Quantity: @Inventory.InventoryQty</div>
+    <div>Pantry item: @Inventory.PantryItemName</div>
+
+}

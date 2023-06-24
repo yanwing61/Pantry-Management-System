@@ -1,0 +1,15 @@
+﻿﻿@model IEnumerable<PassionProject2.Models.TagDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<a href="/Tag/New">+ New Tag</a>
+
+@foreach (var Tag in Model)
+{
+    <h3><a href="/Tag/details/@Tag.TagID">@Tag.TagName</a></h3>
+
+}

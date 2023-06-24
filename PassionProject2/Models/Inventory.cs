@@ -21,4 +21,13 @@ namespace PassionProject2.Models
         public virtual PantryItem PantryItem { get; set; }
 
     }
+
+    public class InventoryDto
+    {
+        public int InventoryID { get; set; }
+        public int InventoryQty { get; set; }
+        public DateTime InventoryLogDate { get; set; }
+        public int PantryItemID { get; set; }
+        public string PantryItemName { get; set; }
+    }
 }

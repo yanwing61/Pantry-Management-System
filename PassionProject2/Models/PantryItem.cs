@@ -17,4 +17,13 @@ namespace PassionProject2.Models
         //A pantry item can have many tags
         public ICollection<Tag> Tags { get; set; }
     }
+
+    public class PantryItemDto
+    {
+        public int PantryItemID { get; set; }
+        public string PantryItemName { get; set; }
+        public decimal PantryItemUnitPrice { get; set; }
+        public int PantryItemCurrentQty { get; set; }
+    }
+
 }

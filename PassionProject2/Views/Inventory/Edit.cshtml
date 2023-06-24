@@ -1,0 +1,34 @@
+﻿﻿@model PassionProject2.Models.ViewModels.UpdateInventory
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Inventory</h2>
+
+<form action="/Inventory/Update/@Model.SelectedInventory.InventoryID" method="POST">
+
+    <div style="display:none;">
+        <input type="text" name="InventoryID" value="@Model.SelectedInventory.InventoryID" />
+    </div>
+
+    <div>
+        <label>Quantity:</label> <input type="number" name="InventoryQty" value="@Model.SelectedInventory.InventoryQty" />
+    </div>
+    <div>
+        <label>Log Date:</label> <input type="datetime" name="InventoryLogDate" value="@Model.SelectedInventory.InventoryLogDate" />
+    </div>
+    <div>
+        <label>Pantry Item:</label>
+        <select name="pantryitem">
+            @foreach (var pantryitem in Model.PantryItemOptions)
+            {
+                <option value="@pantryitem.PantryItemID">@pantryitem.PantryItemName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Inventory" />
+
+    </div>
+</form>

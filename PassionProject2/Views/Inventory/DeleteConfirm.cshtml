@@ -1,0 +1,16 @@
+﻿﻿@model PassionProject2.Models.InventoryDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Inventory?</h2>
+<div><a href="/Inventory/List">Cancel</a></div>
+
+<h3>@Model.InventoryID</h3>
+<div>Quantity: @Model.InventoryQty</div>
+<div>Log Date: @Model.InventoryLogDate</div>
+
+<form action="/Inventory/Delete/@Model.InventoryID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

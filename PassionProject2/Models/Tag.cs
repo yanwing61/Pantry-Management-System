@@ -17,4 +17,11 @@ namespace PassionProject2.Models
         public ICollection<PantryItem> PantryItems { get; set; }
 
     }
+
+    public class TagDto
+    {
+        public int TagID { get; set; }
+        public string TagName { get; set; }
+
+    }
 }

@@ -1,0 +1,13 @@
+﻿@model PassionProject2.Models.InventoryDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div><a href="/Inventory/List">Back to list</a></div>
+<div><a href="/Inventory/Edit/@Model.InventoryID">Update</a></div>
+<div><a href="/Inventory/DeleteConfirm/@Model.InventoryID">Delete</a></div>
+
+<h2>@Model.InventoryLogDate</h2>
+<div>Quantity: @Model.InventoryQty</div>
+<div>Pantry Item: @Model.PantryItemName</div>
