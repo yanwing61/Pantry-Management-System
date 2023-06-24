@@ -17,16 +17,12 @@ body {
     border: 0;
 }
 
-.navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
     color: #788060;
 }
 
-.navbar-inverse .navbar-brand {
-    color: black;
-}
-
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > a:hover {
-        color: #cc7000;
+    color: #cc7000;
 }
 
 #add {

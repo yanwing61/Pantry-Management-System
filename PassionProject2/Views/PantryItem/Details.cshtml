@@ -5,7 +5,9 @@
 }
 
 <div style="margin-top: 20px"><a href="/PantryItem/List">Back to list</a></div>
+<br />
 <div><a href="/PantryItem/Edit/@Model.SelectedPantryItem.PantryItemID">Update</a></div>
+<br />
 <div><a href="/PantryItem/DeleteConfirm/@Model.SelectedPantryItem.PantryItemID">Delete</a></div>
 
 <h2>@Model.SelectedPantryItem.PantryItemName</h2>
@@ -41,7 +43,7 @@
     <h3>Inventories related to @Model.SelectedPantryItem.PantryItemName</h3>
     @foreach (var inventory in Model.RelatedInventories)
     {
-        <a href="/Inventory/Details/@inventory.InventoryID">@inventory.InventoryLogDate  @inventory.InventoryQty</a>
+        <a href="/Inventory/Details/@inventory.InventoryID">@inventory.InventoryLogDate  - Qty: @inventory.InventoryQty</a>
         <br />
     }
 </div>
