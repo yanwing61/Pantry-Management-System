@@ -151,6 +151,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateTag(int id, Tag Tag)
         {
             Debug.WriteLine("update method reached");
@@ -208,6 +209,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(Tag))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddTag(Tag Tag)
         {
             if (!ModelState.IsValid)
@@ -236,6 +238,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(Tag))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteTag(int id)
         {
             Tag Tag = db.Tags.Find(id);

@@ -91,6 +91,7 @@ namespace PassionProject2.Controllers
         /// POST api/PantryItemData/AssociatePantryItemWithTag/6/1
         /// </example>
         [HttpPost]
+        [Authorize]
         [Route("api/PantryItemData/AssociatePantryItemWithTag/{pantryitemid}/{tagid}")]
         public IHttpActionResult AssociatePantryItemWithTag(int pantryitemid, int tagid)
         {
@@ -129,6 +130,7 @@ namespace PassionProject2.Controllers
         /// POST api/PantryItemData/UnAssociatePantryItemWithTag/6/1
         /// </example>
         [HttpPost]
+        [Authorize]
         [Route("api/PantryItemData/UnAssociatePantryItemWithTag/{pantryitemid}/{tagid}")]
         public IHttpActionResult UnAssociatePantryItemWithTag(int pantryitemid, int tagid)
         {
@@ -167,6 +169,7 @@ namespace PassionProject2.Controllers
         /// </example> 
         [ResponseType(typeof(PantryItem))]
         [HttpGet]
+
         public IHttpActionResult FindPantryItem(int id)
         {
             PantryItem PantryItem = db.PantryItems.Find(id);
@@ -202,6 +205,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdatePantryItem(int id, PantryItem pantryItem)
         {
             Debug.WriteLine("update method reached");
@@ -261,6 +265,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(PantryItem))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddPantryItem(PantryItem pantryItem)
         {
             if (!ModelState.IsValid)
@@ -289,6 +294,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(PantryItem))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeletePantryItem(int id)
         {
             PantryItem pantryItem = db.PantryItems.Find(id);

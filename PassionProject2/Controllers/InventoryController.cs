@@ -18,9 +18,40 @@ namespace PassionProject2.Controllers
 
         static InventoryController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                //cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44302/api/");
         }
+
+        /// <summary>
+        /// Grabs the authentication cookie sent to this controller.
+        /// </summary>
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            //HTTP client is set up to be reused, otherwise it will exhaust server resources.
+            //This is a bit dangerous because a previously authenticated cookie could be cached for
+            //a follow-up request from someone else. Reset cookies in HTTP client before grabbing a new one.
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            //collect token as it is submitted to the controller
+            //use it to pass along to the WebAPI.
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
 
         // GET: Inventory/List
         public ActionResult List()
@@ -69,6 +100,7 @@ namespace PassionProject2.Controllers
         }
 
         // GET: Inventory/New
+        [Authorize]
         public ActionResult New()
         {
             //information about all pantry items in the systems
@@ -85,6 +117,7 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Inventory inventory, int clientTimezoneOffset)
         {
             inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
@@ -116,6 +149,7 @@ namespace PassionProject2.Controllers
         }
 
         // GET: Inventory/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             UpdateInventory ViewModel = new UpdateInventory();
@@ -136,6 +170,7 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Inventory inventory, int clientTimezoneOffset)
         {
             inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
@@ -158,6 +193,7 @@ namespace PassionProject2.Controllers
         }
 
         // GET: Inventory/Delete/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "Inventorydata/findInventory/" + id;
@@ -168,6 +204,7 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             string url = "Inventorydata/deleteInventory/" + id;

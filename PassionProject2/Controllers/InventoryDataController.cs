@@ -127,6 +127,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateInventory(int id, Inventory Inventory)
         {
             Debug.WriteLine("update method reached");
@@ -187,6 +188,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(Inventory))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddInventory(Inventory Inventory)
         {
             if (!ModelState.IsValid)
@@ -215,6 +217,7 @@ namespace PassionProject2.Controllers
 
         [ResponseType(typeof(Inventory))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteInventory(int id)
         {
             Inventory Inventory = db.Inventories.Find(id);
