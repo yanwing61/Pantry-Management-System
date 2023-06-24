@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<div><a href="/PantryItem/List">Back to list</a></div>
+<div style="margin-top: 20px"><a href="/PantryItem/List">Back to list</a></div>
 <div><a href="/PantryItem/Edit/@Model.SelectedPantryItem.PantryItemID">Update</a></div>
 <div><a href="/PantryItem/DeleteConfirm/@Model.SelectedPantryItem.PantryItemID">Delete</a></div>
 
@@ -12,7 +12,7 @@
 <div>Current Quantity: @Model.SelectedPantryItem.PantryItemCurrentQty</div>
 <div>Unit Price: CAD$@Model.SelectedPantryItem.PantryItemUnitPrice</div>
 
-<div style="margin-top: 100px">
+<div style="margin-top: 50px">
     <h3>Tags associated with @Model.SelectedPantryItem.PantryItemName</h3>
     @foreach (var tag in Model.AssociatedTags)
     {

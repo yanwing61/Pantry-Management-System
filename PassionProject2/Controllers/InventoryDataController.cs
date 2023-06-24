@@ -166,6 +166,7 @@ namespace PassionProject2.Controllers
                 }
             }
             Debug.WriteLine("none of the condition triggered");
+            Debug.WriteLine(Inventory.InventoryLogDate);
             return StatusCode(HttpStatusCode.NoContent);
         }
 

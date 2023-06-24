@@ -85,8 +85,10 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Create
         [HttpPost]
-        public ActionResult Create(Inventory inventory)
+        public ActionResult Create(Inventory inventory, int clientTimezoneOffset)
         {
+            inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
+
             Debug.WriteLine("the json payload is :");
             //objective: add a new inventory into our system using the API
 
@@ -134,11 +136,11 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Inventory Inventory)
+        public ActionResult Update(int id, Inventory inventory, int clientTimezoneOffset)
         {
-
+            inventory.InventoryLogDate = inventory.InventoryLogDate.AddMinutes(-clientTimezoneOffset);
             string url = "Inventorydata/updateInventory/" + id;
-            string jsonpayload = jss.Serialize(Inventory);
+            string jsonpayload = jss.Serialize(inventory);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
