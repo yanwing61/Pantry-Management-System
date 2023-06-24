@@ -293,11 +293,21 @@
     <Content Include="Views\Inventory\Error.cshtml" />
     <Content Include="Views\Inventory\List.cshtml" />
     <Content Include="Views\Inventory\New.cshtml" />
+    <Content Include="Views\PantryItem\New.cshtml" />
+    <Content Include="Views\PantryItem\DeleteConfirm.cshtml" />
+    <Content Include="Views\PantryItem\Details.cshtml" />
+    <Content Include="Views\PantryItem\Edit.cshtml" />
+    <Content Include="Views\PantryItem\Error.cshtml" />
+    <Content Include="Views\PantryItem\List.cshtml" />
+    <Content Include="Views\Tag\New.cshtml" />
+    <Content Include="Views\Tag\DeleteConfirm.cshtml" />
+    <Content Include="Views\Tag\Details.cshtml" />
+    <Content Include="Views\Tag\Edit.cshtml" />
+    <Content Include="Views\Tag\Error.cshtml" />
+    <Content Include="Views\Tag\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PantryItem\" />
-    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

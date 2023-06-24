@@ -85,14 +85,14 @@ namespace PassionProject2.Controllers
 
         // POST: Inventory/Create
         [HttpPost]
-        public ActionResult Create(Inventory Inventory)
+        public ActionResult Create(Inventory inventory)
         {
             Debug.WriteLine("the json payload is :");
             //objective: add a new inventory into our system using the API
 
             string url = "InventoryData/AddInventory";
 
-            string jsonpayload = jss.Serialize(Inventory);
+            string jsonpayload = jss.Serialize(inventory);
 
             Debug.WriteLine(jsonpayload);
 
